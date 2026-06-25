@@ -249,7 +249,7 @@ export const portfolioSystems: PortfolioSystem[] = [
           "Cuña publicitaria para la marca Coca-Cola, con una duración de 10 segundos. Muestra un producto de la marca y su mensaje publicitario.",
         media: {
           type: "video",
-          src: "/project-media/cuñaV2.mp4",
+          src: "/project-media/anuncioV2.mp4",
           alt: "Cuña publicitaria del proyecto Coca-Cola",
         },
         details: [
