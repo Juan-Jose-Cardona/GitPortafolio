@@ -79,14 +79,18 @@ function getPlanetOrbit(
 
 // dibuja el anillo orbital
 function SolarOrbit({ radius, color }: SolarOrbitProps) {
-  // memoriza la geometria del anillo
-  const geometry = useMemo(() => createOrbitGeometry(radius), [radius]);
+  const orbitLine = useMemo(() => {
+    const geometry = createOrbitGeometry(radius);
+    const material = new THREE.LineBasicMaterial({
+      color,
+      transparent: true,
+      opacity: 0.32,
+    });
 
-  return (
-    <line geometry={geometry}>
-      <lineBasicMaterial transparent color={color} opacity={0.32} />
-    </line>
-  );
+    return new THREE.Line(geometry, material);
+  }, [radius, color]);
+
+  return <primitive object={orbitLine} />;
 }
 
 // dibuja planeta interactivo
