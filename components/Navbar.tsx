@@ -28,14 +28,10 @@ export default function Navbar({ systems, onSelectSystem }: NavbarProps) {
   return (
     <nav className="navbar">
       <a className="brand" href="#top" aria-label="Ir al inicio">
-        <Image
+        <img
           src={publicPath("/project-media/Icon.svg")}
           alt="Logo del portafolio"
-          width={38}
-          height={38}
           className="brand-mark"
-          priority
-          unoptimized
         />
         <span>Sistema Portafolio</span>
       </a>
