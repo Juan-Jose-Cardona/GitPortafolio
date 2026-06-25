@@ -1,21 +1,23 @@
-// prepara rutas publicas del proyecto
+// prepara rutas publicas relativas
 export function publicPath(path: string) {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const cleanPath = path.trim();
 
   if (
-    path.startsWith("http") ||
-    path.startsWith("mailto:") ||
-    path.startsWith("tel:") ||
-    path.startsWith("#")
+    cleanPath.startsWith("http") ||
+    cleanPath.startsWith("mailto:") ||
+    cleanPath.startsWith("tel:") ||
+    cleanPath.startsWith("#") ||
+    cleanPath.startsWith("data:") ||
+    cleanPath.startsWith("blob:")
   ) {
-    return path;
+    return cleanPath;
   }
 
-  const cleanPath = path.startsWith("./") ? path.slice(1) : path;
+  const withoutDot = cleanPath.startsWith("./")
+    ? cleanPath.slice(2)
+    : cleanPath;
 
-  if (cleanPath.startsWith("/")) {
-    return `${basePath}${cleanPath}`;
-  }
-
-  return `${basePath}/${cleanPath}`;
+  return withoutDot.startsWith("/")
+    ? withoutDot.slice(1)
+    : withoutDot;
 }

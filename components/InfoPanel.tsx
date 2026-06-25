@@ -47,6 +47,8 @@ function ItemMedia({ item }: ItemMediaProps) {
       src={publicPath(item.media.src)}
       poster={item.media.poster ? publicPath(item.media.poster) : undefined}
       controls
+      preload="metadata"
+      playsInline
     >
       Tu navegador no soporta video HTML5.
     </video>

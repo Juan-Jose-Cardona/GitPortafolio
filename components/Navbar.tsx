@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import type { PortfolioSystem } from "@/data/portfolioData";
 
 import { publicPath } from "@/lib/publicPath";
@@ -11,9 +10,11 @@ type NavbarProps = {
   onSelectSystem: (system: PortfolioSystem) => void;
 };
 
+// muestra barra de navegacion
 export default function Navbar({ systems, onSelectSystem }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
+  // selecciona sistema del menu
   const handleSelect = (system: PortfolioSystem) => {
     onSelectSystem(system);
     setOpen(false);
@@ -55,7 +56,7 @@ export default function Navbar({ systems, onSelectSystem }: NavbarProps) {
           </button>
         ))}
 
-        <a href="./cv.pdf" download>
+        <a href={publicPath("./cv.pdf")} download>
           Hoja de Vida
         </a>
       </div>
