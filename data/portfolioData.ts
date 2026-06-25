@@ -31,6 +31,7 @@ export type PortfolioSystem = {
   title: string;
   subtitle: string;
   description: string;
+  media?: PortfolioMedia;
   accent: string;
   items: PortfolioItem[];
 };
@@ -53,6 +54,11 @@ export const portfolioSystems: PortfolioSystem[] = [
     subtitle: "Presentación profesional",
     description:
       "Estudiante de Ingeniería Multimedia con interés y experiencia en el campo del diseño digital y la programación. He desarrollado proyectos académicos usando herramientas como Visual Studio Code, Blender y Adobe Creative Cloud. Me enfoco en el cumplimiento de metas mientras fortalezco mis habilidades mediante proyectos reales.",
+    media: {
+      type: "image",
+      src: "/project-media/profile.png",
+      alt: "Imagen de presentación del perfil profesional",
+    },
     accent: "#f6b73c",
     items: [
       {

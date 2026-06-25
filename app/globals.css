@@ -461,6 +461,11 @@ video.info-media {
   aspect-ratio: 16 / 9;
 }
 
+.info-panel > p + .info-media,
+.info-panel > p + .info-media-link {
+  margin-top: 18px;
+}
+
 .info-media-link {
   display: block;
   margin-bottom: 18px;

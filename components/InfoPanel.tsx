@@ -3,6 +3,7 @@
 import type { CSSProperties } from "react";
 import type {
   PortfolioItem,
+  PortfolioMedia,
   PortfolioSelection,
   PortfolioSystem,
 } from "@/data/portfolioData";
@@ -21,8 +22,9 @@ type SystemItemButtonProps = {
   onSelect: (selection: PortfolioSelection) => void;
 };
 
-type ItemMediaProps = {
-  item: PortfolioItem;
+type PanelMediaProps = {
+  media?: PortfolioMedia;
+  title: string;
 };
 
 // abre informacion del planeta
@@ -38,14 +40,14 @@ function SystemItemButton({ system, item, onSelect }: SystemItemButtonProps) {
 }
 
 // muestra recurso multimedia
-function ItemMedia({ item }: ItemMediaProps) {
-  if (!item.media) return null;
+function PanelMedia({ media, title }: PanelMediaProps) {
+  if (!media) return null;
 
-  const mediaElement = item.media.type === "video" ? (
+  const mediaElement = media.type === "video" ? (
     <video
       className="info-media"
-      src={publicPath(item.media.src)}
-      poster={item.media.poster ? publicPath(item.media.poster) : undefined}
+      src={publicPath(media.src)}
+      poster={media.poster ? publicPath(media.poster) : undefined}
       controls
       preload="metadata"
       playsInline
@@ -55,21 +57,21 @@ function ItemMedia({ item }: ItemMediaProps) {
   ) : (
     <img
       className="info-media"
-      src={publicPath(item.media.src)}
-      alt={item.media.alt}
+      src={publicPath(media.src)}
+      alt={media.alt}
     />
   );
 
-  if (!item.media.href) return mediaElement;
+  if (!media.href) return mediaElement;
 
   return (
     <a
       className="info-media-link"
-      href={publicPath(item.media.href)}
-      target={item.media.external ? "_blank" : undefined}
-      rel={item.media.external ? "noreferrer" : undefined}
-      download={item.media.download ? true : undefined}
-      aria-label={`Abrir enlace de ${item.title}`}
+      href={publicPath(media.href)}
+      target={media.external ? "_blank" : undefined}
+      rel={media.external ? "noreferrer" : undefined}
+      download={media.download ? true : undefined}
+      aria-label={`Abrir enlace de ${title}`}
     >
       {mediaElement}
     </a>
@@ -100,6 +102,7 @@ export default function InfoPanel({ selected, onClose, onSelect }: InfoPanelProp
         <p className="info-kicker">{system.subtitle}</p>
         <h2>{system.title}</h2>
         <p>{system.description}</p>
+        <PanelMedia media={system.media} title={system.title} />
 
         <div className="info-list">
           {system.items.map((item) => (
@@ -133,7 +136,7 @@ export default function InfoPanel({ selected, onClose, onSelect }: InfoPanelProp
 
       <p className="info-kicker">{item.eyebrow}</p>
       <h2>{item.title}</h2>
-      <ItemMedia item={item} />
+      <PanelMedia media={item.media} title={item.title} />
       <p>{item.description}</p>
 
       {item.details && item.details.length > 0 && (
