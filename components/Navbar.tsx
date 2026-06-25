@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import type { PortfolioSystem } from "@/data/portfolioData";
 
+import { publicPath } from "@/lib/publicPath";
+
 type NavbarProps = {
   systems: PortfolioSystem[];
   onSelectSystem: (system: PortfolioSystem) => void;
@@ -26,12 +28,13 @@ export default function Navbar({ systems, onSelectSystem }: NavbarProps) {
     <nav className="navbar">
       <a className="brand" href="#top" aria-label="Ir al inicio">
         <Image
-          src="/project-media/Icon.svg"
+          src={publicPath("/project-media/Icon.svg")}
           alt="Logo del portafolio"
           width={38}
           height={38}
           className="brand-mark"
           priority
+          unoptimized
         />
         <span>Sistema Portafolio</span>
       </a>

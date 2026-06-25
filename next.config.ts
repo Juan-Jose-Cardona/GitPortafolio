@@ -1,14 +1,19 @@
 import type { NextConfig } from "next";
 
 const repoName = "GitPortafolio";
+const isProduction = process.env.NODE_ENV === "production";
+const basePath = isProduction ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
-  basePath: process.env.NODE_ENV === "production" ? `/${repoName}` : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? `/${repoName}/` : "",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : "",
   images: {
     unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 };
 

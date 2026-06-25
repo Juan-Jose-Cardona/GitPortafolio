@@ -7,6 +7,8 @@ import type {
   PortfolioSystem,
 } from "@/data/portfolioData";
 
+import { publicPath } from "@/lib/publicPath";
+
 type InfoPanelProps = {
   selected: PortfolioSelection | null;
   onClose: () => void;
@@ -42,8 +44,8 @@ function ItemMedia({ item }: ItemMediaProps) {
   const mediaElement = item.media.type === "video" ? (
     <video
       className="info-media"
-      src={item.media.src}
-      poster={item.media.poster}
+      src={publicPath(item.media.src)}
+      poster={item.media.poster ? publicPath(item.media.poster) : undefined}
       controls
     >
       Tu navegador no soporta video HTML5.
@@ -51,7 +53,7 @@ function ItemMedia({ item }: ItemMediaProps) {
   ) : (
     <img
       className="info-media"
-      src={item.media.src}
+      src={publicPath(item.media.src)}
       alt={item.media.alt}
     />
   );
@@ -61,7 +63,7 @@ function ItemMedia({ item }: ItemMediaProps) {
   return (
     <a
       className="info-media-link"
-      href={item.media.href}
+      href={publicPath(item.media.href)}
       target={item.media.external ? "_blank" : undefined}
       rel={item.media.external ? "noreferrer" : undefined}
       download={item.media.download ? true : undefined}
@@ -146,7 +148,7 @@ export default function InfoPanel({ selected, onClose, onSelect }: InfoPanelProp
             <a
               key={action.label}
               className="info-action"
-              href={action.href}
+              href={publicPath(action.href)}
               target={action.external ? "_blank" : undefined}
               rel={action.external ? "noreferrer" : undefined}
               download={action.download ? true : undefined}

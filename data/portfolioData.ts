@@ -193,7 +193,7 @@ export const portfolioSystems: PortfolioSystem[] = [
           "Un video de lírica musical que muestra la letra de la canción de forma dinámica.",
         media: {
           type: "video",
-          src: "/GitPortafolio/project-media/MainCompLyricsParcial2_V1.mp4",
+          src: "/project-media/MainCompLyricsParcial2_V1.mp4",
           alt: "Vista previa del proyecto Letra Dinámica",
         },
         details: [
